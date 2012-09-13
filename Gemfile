@@ -1,6 +1,6 @@
-source "http://rubygems.org"
+source :rubygems
 
-# Specify your gem's dependencies in guard-phantomjs.gemspec
+# Specify your gem's dependencies in guard-phantomjs-jasmine.gemspec
 gemspec
 
 require 'rbconfig'

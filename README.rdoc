@@ -34,4 +34,5 @@ Pull requests are very welcome! Make sure your patches are well tested. Please c
 == Authors
 
 {Stas Suscov}[https://github.com/stas]
+
 Thanks to {Klaus Hartl}[https://github.com/carhartl] for guard-phantomjs project.
