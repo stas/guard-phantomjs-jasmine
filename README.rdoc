@@ -1,8 +1,7 @@
-= guard-phantomjs
+= guard-phantomjs-jasmine
 
-Phantomjs guard automatically runs PhantomJS with a driver and a URL, usually a web server hosting tests. It executes the tests and displays the test result.
-
-- Tested on Ruby 1.8.7 & 1.9.2.
+PhantomJS Jasmine Guard automatically runs Jasmine specs with PhantomJS. It executes the tests and displays the test result.
+No webserver is required!
 
 == Install
 
@@ -10,33 +9,9 @@ Please be sure to have {Guard}[https://github.com/guard/guard] installed before 
 
 Add guard definition to your Guardfile by running this command:
 
-    guard init phantomjs
+    guard init phantomjs-jasmine
 
-Jasmine runner:
-
-    if (phantom.state.length === 0) {
-        if (phantom.args.length !== 1) {
-            console.log('Usage: run-jasmine.js URL');
-            phantom.exit();
-        } else {
-            phantom.state = 'run-jasmine';
-            phantom.open(phantom.args[0]);
-        }
-    } else {
-        window.setInterval(function () {
-            if (document.body.querySelector('.finished-at')) {
-                console.log(document.body.querySelector('.description').innerText);
-                var failed = document.body.querySelectorAll('div.jasmine_reporter .spec.failed .description');
-                for (var i = 0, desc; desc = failed[i]; i++) {
-                    var message = [desc.title, desc.nextSibling.querySelector('.resultMessage.fail').innerText];
-                    console.log(message.join(' => '));
-                }
-                phantom.exit();
-            }
-        }, 100);
-    }
-
-Save runner and pass its location to the guard as <tt>:runner</tt> option, see Options below.
+You will need the Jasmine html runner next. If you have it already, just update your Guardfile pointing :runner to the relevant html file.
 
 == Usage
 
@@ -46,24 +21,17 @@ Please read {Guard usage doc}[https://github.com/guard/guard#readme]
 
 The location of the test runner:
 
-    guard 'phantomjs', :runner => '...' do
-      ...
-    end
-
-The url of the webserver hosting the test suite:
-
-    guard 'phantomjs', :server => '...' do
+    guard 'phantomjs-jasmine', :runner => '...' do
       ...
     end
 
 == Development
 
-- Source hosted at {GitHub}[https://github.com/guard/guard-phantomjs]
-- Report issues, questions, feature requests on {GitHub Issues}[https://github.com/guard/guard-phantomjs/issues]
+- Report issues, questions, feature requests on {GitHub Issues}[https://github.com/stas/guard-phantomjs-jasmine/issues]
 
 Pull requests are very welcome! Make sure your patches are well tested. Please create a topic branch for every separate change you make.
 
 == Authors
 
-{Klaus Hartl}[https://github.com/carhartl]
-
+{Stas Suscov}[https://github.com/stas]
+Thanks to {Klaus Hartl}[https://github.com/carhartl] for guard-phantomjs project.
