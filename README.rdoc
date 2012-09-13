@@ -1,5 +1,7 @@
 = guard-phantomjs-jasmine
 
+{<img src="https://secure.travis-ci.org/stas/guard-phantomjs-jasmine.png" alt="Build Status" />}[http://travis-ci.org/stas/guard-phantomjs-jasmine]
+
 PhantomJS Jasmine Guard automatically runs Jasmine specs with PhantomJS. It executes the tests and displays the test result.
 No webserver is required!
 
