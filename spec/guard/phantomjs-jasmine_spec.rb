@@ -70,6 +70,16 @@ module Guard
 
           subject.run_on_change(['foo'])
         end
+
+        it "handles invalid phantomjs return data" do
+          io_mock = mock('IO Connection').as_null_object
+          io_mock.should_receive(:read).and_return('THIS IS WRONG!')
+          IO.should_receive(:popen).and_return(io_mock)
+
+          subject.should_receive(:error)
+
+          subject.run_on_change(['foo'])
+        end
       end
 
       context "without modifications" do

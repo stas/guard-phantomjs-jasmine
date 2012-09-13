@@ -18,9 +18,14 @@ module Guard
       cmd = "phantomjs #{options[:runner_script]} #{options[:runner]}"
       result = IO.popen(cmd)
 
-      parsed_result = JSON.parse(result.read, {
+      begin
+        parsed_result = JSON.parse(result.read, {
         :max_nesting => false, :symbolize_names => true })
-      result.close
+        result.close
+      rescue Exception => exc
+        error(exc.message)
+        return
+      end
 
       passed = parsed_result[:passed]
       failed = parsed_result[:total] - passed
