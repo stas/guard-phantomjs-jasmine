@@ -19,6 +19,23 @@ You will need the Jasmine html runner next. If you have it already, just update 
 
 Please read {Guard usage doc}[https://github.com/guard/guard#readme]
 
+== CI usecase
+
+You can use builtin rake task if you want to run your specs with Rake
+
+Create a Rakefile with the following
+
+    require 'guard/phantomjs-jasmine/task'
+    Guard::PhantomJsJasmineTask.new
+
+if you want to customize the task, you can use options
+
+    require 'guard/phantomjs-jasmine/task'
+    Guard::PhantomJsJasmineTask.new(:ci) do |task|
+      task.options[:runner] = 'path/to/jasmine.html'
+      task.options[:runner_script] = 'path/to/runner.coffee'
+    end
+
 == Options
 
 The location of the test runner:
