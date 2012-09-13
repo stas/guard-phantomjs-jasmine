@@ -26,20 +26,20 @@ module Guard
       failed = parsed_result[:total] - passed
       run_time = (parsed_result[:ended] - parsed_result[:started]).round(3)
 
+      parsed_result[:suites].each do |suite|
+        if suite[:passed]
+          info(
+            "\n#{suite[:name]}\n\t#{suite[:spec]}"
+          )
+        else
+          error(
+            "\n#{suite[:name]}\n\t#{suite[:spec]}\n\t\t#{suite[:trace][:message]}"
+          )
+        end
+      end
+
       if failed > 0
         notify("#{failed} Jasmine spec(s) failed.", :failed)
-        parsed_result[:suites].each do |suite|
-          if suite[:passed]
-            info(
-              "\n#{suite[:name]}\n\t#{suite[:spec]}"
-            )
-          else
-            error(
-              "\n#{suite[:name]}\n\t#{suite[:spec]}\n\t\t#{suite[:trace][:message]}"
-            )
-          end
-        end
-
         info("\n#{failed}/#{parsed_result[:total]} failed in #{run_time} ms.")
       else
         notify("Jasmine specs passed.", :success)
