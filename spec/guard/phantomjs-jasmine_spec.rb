@@ -35,7 +35,7 @@ module Guard
 
           JSON.should_receive(:parse).and_return(mock_results)
 
-          guard.should_receive(:info)
+          guard.should_receive(:error)
 
           guard.run_on_change(['foo'])
         end
@@ -49,6 +49,7 @@ module Guard
             :title => 'PhantomJS Jasmine Guard', :image => :success)
 
           subject.should_receive(:info)
+          subject.should_receive(:error)
 
           subject.run_on_change(['foo'])
         end

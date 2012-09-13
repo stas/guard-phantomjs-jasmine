@@ -1,4 +1,6 @@
 require 'guard/guard'
+require 'guard/ui'
+require 'guard/notifier'
 require 'guard/phantomjs-jasmine/cli'
 
 module Guard
