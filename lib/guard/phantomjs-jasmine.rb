@@ -4,8 +4,6 @@ require 'json'
 
 module Guard
   class PhantomJsJasmine < Guard
-    # Guard::PhantomJsJasmine version
-    VERSION = '0.0.1'
 
     # Initialize Guard::PhantomJsJasmine
     #

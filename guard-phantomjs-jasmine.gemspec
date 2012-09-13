@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "guard/phantomjs-jasmine"
 
 Gem::Specification.new do |s|
   s.name        = 'guard-phantomjs-jasmine'
-  s.version     = Guard::PhantomJsJasmine::VERSION
+  s.version     = '0.0.1'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Stas Suscov']
   s.email       = ['stas@nerd.ro']
