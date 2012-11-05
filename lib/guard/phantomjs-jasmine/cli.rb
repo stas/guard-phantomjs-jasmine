@@ -20,7 +20,7 @@ module Guard
 
       begin
         parsed_result = JSON.parse(result.read, {
-        :max_nesting => false, :symbolize_names => true })
+          :max_nesting => false, :symbolize_names => true })
         result.close
       rescue Exception => exc
         error(exc.message)
@@ -32,14 +32,12 @@ module Guard
       run_time = (parsed_result[:ended] - parsed_result[:started]).round(3)
 
       parsed_result[:suites].each do |suite|
+        msg = "\n" + "#{suite[:desc]} #{suite[:name]}\n\t#{suite[:spec]}".lstrip
+
         if suite[:passed]
-          info(
-            "\n#{suite[:name]}\n\t#{suite[:spec]}"
-          )
+          info( msg )
         else
-          error(
-            "\n#{suite[:name]}\n\t#{suite[:spec]}\n\t\t#{suite[:trace][:message]}"
-          )
+          error( "#{msg}\n\t\t#{suite[:trace]}" )
         end
       end
 
