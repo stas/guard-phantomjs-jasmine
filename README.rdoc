@@ -44,6 +44,21 @@ The location of the test runner:
       ...
     end
 
+== AMD / Require.js support
+
+To make sure the Jasmine is initialized correctly
+before any test gets executed, we need to detect when Jasmine is loaded.
+
+Add this callback:
+
+    if ( window['beforeJasmineExecution'] ) {
+      beforeJasmineExecution();
+    }
+
+right before:
+
+    jasmineEnv.execute();
+
 == Development
 
 - Report issues, questions, feature requests on {GitHub Issues}[https://github.com/stas/guard-phantomjs-jasmine/issues]

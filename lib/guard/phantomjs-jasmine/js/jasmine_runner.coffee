@@ -9,7 +9,12 @@ page.onInitialized = ->
   page.injectJs 'console_json_reporter.js'
   page.evaluate ->
     window.onload = ->
-      jasmine.getEnv().addReporter( new ConsoleReporter )
+      # If this is an AMD environment, add console reporter using a callback
+      if ( window['define'] )
+        window.beforeJasmineExecution = ->
+          jasmine.getEnv().addReporter( new ConsoleReporter )
+      else
+        jasmine.getEnv().addReporter( new ConsoleReporter )
 
 page.onConsoleMessage = (msg) ->
   if return_code = msg.match /EXIT (\d)/
