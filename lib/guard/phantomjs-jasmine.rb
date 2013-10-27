@@ -1,20 +1,18 @@
-require 'guard/guard'
-require 'guard/ui'
-require 'guard/notifier'
+require 'guard'
+require 'guard/plugin'
 require 'guard/phantomjs-jasmine/cli'
 
 module Guard
-  class PhantomJsJasmine < Guard
+  class PhantomJsJasmine < Plugin
     include PhantomJsJasmineCli
 
     # Initialize Guard::PhantomJsJasmine
     #
-    # @param [Array<Guard::Watcher>] watchers the watchers in the Guard block
     # @param [Hash] options the options for the Guard
     # @option options [String] :runner_script, path to the runner script
     # @option options [String] :runner, path to the jasmine runner
-    def initialize(watchers = [], options = {})
-      super(watchers, options)
+    def initialize(options = {})
+      super
 
       @options = options
     end

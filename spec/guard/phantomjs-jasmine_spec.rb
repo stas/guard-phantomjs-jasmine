@@ -23,12 +23,12 @@ module Guard
 
         it "executes phantomjs" do
           Notifier.stub(:notify)
-          guard = PhantomJsJasmine.new(
-            [], :runner => 'spec/run.html',
+          guard = PhantomJsJasmine.new({
+            :runner => 'spec/run.html',
             :runner_script => 'run.coffee'
-          )
+          })
 
-          io_mock = mock('IO Connection').as_null_object
+          io_mock = double('IO Connection').as_null_object
           IO.should_receive(:popen).with(
             'phantomjs run.coffee spec/run.html'
           ).and_return(io_mock)
@@ -41,7 +41,7 @@ module Guard
         end
 
         it "notifies on success" do
-          io_mock = mock('IO Connection').as_null_object
+          io_mock = double('IO Connection').as_null_object
           io_mock.should_receive(:read).and_return(mock_results.to_json)
           IO.should_receive(:popen).and_return(io_mock)
 
@@ -58,7 +58,7 @@ module Guard
           failed_mock_results = mock_results
           failed_mock_results[:passed] = 0
 
-          io_mock = mock('IO Connection').as_null_object
+          io_mock = double('IO Connection').as_null_object
           io_mock.should_receive(:read).and_return(mock_results.to_json)
           IO.should_receive(:popen).and_return(io_mock)
 
@@ -72,7 +72,7 @@ module Guard
         end
 
         it "handles invalid phantomjs return data" do
-          io_mock = mock('IO Connection').as_null_object
+          io_mock = double('IO Connection').as_null_object
           io_mock.should_receive(:read).and_return('THIS IS WRONG!')
           IO.should_receive(:popen).and_return(io_mock)
 
